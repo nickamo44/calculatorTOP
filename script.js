@@ -200,7 +200,7 @@ changeSigns.addEventListener("click", ()=> {
     array = string.split(/([+\-x/=])/);
     console.table(array);
     if (currentNum >0){
-        if (array.length <2){
+        if (array.length <2 && string !==""){
         display.textContent = "";
         display.textContent ="-"+currentNum;
         string = display.textContent;
@@ -220,7 +220,7 @@ changeSigns.addEventListener("click", ()=> {
             display.textContent ="-"+currentNum;
         }
     }
-    else{
+    else if(currentNum<0){
         if (array.length <=3 &&
             array.length !== 1
         ){
@@ -318,3 +318,77 @@ function operate(num1,num2,operator){
         return divide(num1,num2);
     }
 }
+
+document.addEventListener('keydown', function(event){
+    if(event.key == "1"){
+        const btn1 = document.getElementById('btn1');
+        btn1.click();
+    }
+    if(event.key == "2"){
+        const btn2 = document.getElementById('btn2');
+        btn2.click();
+    }
+    if(event.key == "3"){
+        const btn3 = document.getElementById('btn3');
+        btn3.click();
+    }
+    if(event.key == "4"){
+        const btn4 = document.getElementById('btn4');
+        btn4.click();
+    }
+    if(event.key == "5"){
+        const btn5 = document.getElementById('btn5');
+        btn5.click();
+    }
+    if(event.key == "6"){
+        const btn6 = document.getElementById('btn6');
+        btn6.click();
+    }
+    if(event.key == "7"){
+        const btn7 = document.getElementById('btn7');
+        btn7.click();
+    }
+    if(event.key == "8"){
+        const btn8 = document.getElementById('btn8');
+        btn8.click();
+    }
+    if(event.key == "9"){
+        const btn9 = document.getElementById('btn9');
+        btn9.click();
+    }
+    if(event.key == "0"){
+        const btn0 = document.getElementById('btn0');
+        btn0.click();
+    }
+    if(event.key == "Backspace"){
+        deleteButton.click();
+    }
+    if(event.key == "Enter"){
+        equalsButton.click();
+    }
+    if(event.key == "+"){
+        const plus = document.getElementById("plus");
+        plus.click();
+    }
+    if(event.key =="-"){
+        const minus = document.getElementById("minus");
+        minus.click();
+    }
+    if(event.key =="x"){
+        const x = document.getElementById("x");
+        x.click();
+    }
+    if(event.key =="/"){
+        const division = document.getElementById("division");
+        division.click();
+    }
+    if(event.key ==" "){
+        clearButton.click();
+    }
+    if(event.key =="."){
+        decimalButton.click();
+    }
+    if(event.key =="shift"){
+        changeSigns.click();
+    }
+});
