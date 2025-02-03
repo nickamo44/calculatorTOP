@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
     <script src="script.js" defer></script>
 </head>
 <body>
     <div class="calculator">
         <div id="display"></div>
         <div class="operators">
-            <button class="button">+</button>
-            <button class="button">-</button>
-            <button class="button">x</button>
-            <button class="button">/</button>
+            <button class="arithmetic">+</button>
+            <button class="arithmetic">-</button>
+            <button class="arithmetic">x</button>
+            <button class="arithmetic">/</button>
         </div>
         <div class="numbers">
             <button class="button">1</button>
@@ -28,8 +28,11 @@
             <button class="button">0</button>
         </div>
         <div class="sideButtons">
-            <button class="button">=</button>
-            <button class="button">Clear</button>
+            <button id="equals">=</button>
+            <button id="clear">Clear</button>
+            <button id="changeSigns">Change</button>
+            <button id="delete">Delete</button>
+            <button id="decimal">.</button>
         </div>
     </div>
 </body>
