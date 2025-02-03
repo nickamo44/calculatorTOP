@@ -154,10 +154,23 @@ clearButton.addEventListener("click", () =>{
 });
 
 deleteButton.addEventListener("click", ()=>{
-    if (string !== "0"){
+    if (display.textContent !== "0" && arithmeticCounter == 0){
        string = string.slice(0,-1);
        display.textContent = string;
        console.log(string);
+    }
+    else if (display.textContent !== "0" && arithmeticCounter ==1){
+        array = string.split(/([+\-x/=])/);
+        let deleteThis = array[2].toString();
+        console.log(deleteThis);
+        display.textContent = deleteThis.slice(0,-1);
+        array[2] = display.textContent;
+        string = array.toString();
+        string = string.replaceAll(",","");
+        console.log(string);12345
+    }
+    if (display.textContent==""){
+        display.textContent = "0";
     }
     if (previousCalcCounter ==1){
         let lastString = previousAnswer.toString();
@@ -229,7 +242,7 @@ changeSigns.addEventListener("click", ()=> {
             console.log(string);
             console.log("poo");
         }
-        else if (array.length ==5){
+        else if (array.length ==5  && array[4] !== ""){
             array.splice(3,1);
             display.textContent = array[3];
             string = array.toString();
