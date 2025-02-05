@@ -5,34 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
         <div id="display"></div>
-        <div class="operators">
-            <button id="plus" class="arithmetic">+</button>
-            <button id="minus" class="arithmetic">-</button>
-            <button id="x" class="arithmetic">x</button>
-            <button id="division" class="arithmetic">/</button>
-        </div>
-        <div class="numbers">
-            <button id="btn1" class="button">1</button>
-            <button id="btn2" class="button">2</button>
-            <button id="btn3" class="button">3</button>
-            <button id="btn4" class="button">4</button>
-            <button id="btn5" class="button">5</button>
-            <button id="btn6" class="button">6</button>
-            <button id="btn7" class="button">7</button>
-            <button id="btn8" class="button">8</button>
-            <button id="btn9" class="button">9</button>
-            <button id="btn0" class="button">0</button>
-        </div>
-        <div class="sideButtons">
-            <button id="equals">=</button>
-            <button id="clear">Clear</button>
-            <button id="changeSigns">Change</button>
-            <button id="delete">Delete</button>
-            <button id="decimal">.</button>
+        <div class="inputs">
+            <div class="leftButtons">
+                <div class="sideButtons">
+                    <button id="clear" class="topButtons">AC</button>
+                    <button id="changeSigns" class="topButtons">+/-</button>
+                    <button id="delete" class="topButtons"><=</button>
+                </div>
+                <div class="numbers">
+                    <button id="btn1" class="button">1</button>
+                    <button id="btn2" class="button">2</button>
+                    <button id="btn3" class="button">3</button>
+                    <button id="btn4" class="button">4</button>
+                    <button id="btn5" class="button">5</button>
+                    <button id="btn6" class="button">6</button>
+                    <button id="btn7" class="button">7</button>
+                    <button id="btn8" class="button">8</button>
+                    <button id="btn9" class="button">9</button>
+                    <button id="btn0" class="button">?</button>
+                    <button id="btn0" class="button">0</button>
+                    <button id="decimal" class="decimalClass">.</button>
+                </div>
+            </div>
+            <div class="operators">
+                <button id="plus" class="arithmetic">+</button>
+                <button id="minus" class="arithmetic">-</button>
+                <button id="x" class="arithmetic">x</button>
+                <button id="division" class="arithmetic">/</button>
+                <button id="equals" class="arithmetic">=</button>
+            </div>
         </div>
     </div>
 </body>

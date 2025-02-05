@@ -17,6 +17,15 @@ let array = [];
 let string = "";
 let defaultText = "0";
 display.textContent = defaultText;
+let topButtons = document.querySelectorAll(".topButtons");
+let decimalClass = document.querySelector(".decimalClass");
+
+decimalClass.addEventListener("mousedown", () =>{
+    decimalClass.style.backgroundColor ="rgba(157, 157, 157, 0.79)";
+});
+decimalClass.addEventListener("mouseup", () =>{
+    decimalClass.style.backgroundColor= "rgba(157, 157, 157, 0.372)";
+});
 
 equalsButton.addEventListener("click", () => {
     array = string.split(/([+\-x/=])/);
@@ -75,6 +84,7 @@ equalsButton.addEventListener("click", () => {
 arithmetic.forEach(symbol =>{
     symbol.addEventListener("click", function(){
         array = string.split(/([+\-x/])/);
+        console.table(array);
         if (arithmeticCounter ==1 &&
             (string.slice(-1) == "+" ||
             string.slice(-1) == "-" ||
@@ -91,14 +101,22 @@ arithmetic.forEach(symbol =>{
             display.textContent = operate(num1,num2,operator);
             string = "";
         }
-        else if (arithmeticCounter ==1 && array.length ==5 && array[3] == "-"){
+        else if (arithmeticCounter ==1 && array.length ==5 && array[3] == "-" && array[1] !== "-"){
             display.content ="";
             num1 = (parseFloat(array[0]));
             num2 = parseFloat(array[4]*-1);
             operator = array[1];
             display.textContent = operate(num1,num2,operator);
             string = "";
-            console.log("test");
+        }
+        else if(arithmeticCounter ==1 && array.length ==5 && array[3] == "-" && array[1] =="-"){
+            display.content ="";
+            num1 = (parseFloat(array[2])*-1);
+            num2 = (parseFloat(array[4]));
+            operator = array[3];
+            display.textContent = operate(num1,num2,operator);
+            console.log(operate(num1,num2,operator));
+            string = "";
         }
         else if(arithmeticCounter ==1 &&
             array.length ==5 &&
@@ -108,10 +126,19 @@ arithmetic.forEach(symbol =>{
             num1 = (parseFloat(array[2])*-1);
             num2 = parseFloat(array[4]);
             operator = array[3];
+            console.log(operate(num1,num2,operator));
             display.textContent = operate(num1,num2,operator);
             string = "";
         }
-        else if(arithmeticCounter ==1 && array.length ==5){
+        else if (array[0] == "" && array[1] == "-" && array.length>4){
+            display.content = "";
+            num1 = (parseFloat(array[2])*-1);
+            num2 = parseFloat(array[4]);
+            operator = array[3];
+            display.textContent = operate(num1,num2,operator);
+            string = "";
+        }
+        else if(arithmeticCounter ==1 && array.length ==5 && array[0] !== ""){
             display.content ="";
             num1 = (parseFloat(array[0])*-1);
             num2 = parseFloat(array[4]);
@@ -162,12 +189,10 @@ deleteButton.addEventListener("click", ()=>{
     else if (display.textContent !== "0" && arithmeticCounter ==1){
         array = string.split(/([+\-x/=])/);
         let deleteThis = array[2].toString();
-        console.log(deleteThis);
         display.textContent = deleteThis.slice(0,-1);
         array[2] = display.textContent;
         string = array.toString();
         string = string.replaceAll(",","");
-        console.log(string);12345
     }
     if (display.textContent==""){
         display.textContent = "0";
@@ -212,7 +237,14 @@ changeSigns.addEventListener("click", ()=> {
     parseFloat(currentNum);
     array = string.split(/([+\-x/=])/);
     console.table(array);
+    console.log(currentNum);
     if (currentNum >0){
+        if (array.length ==1){
+            let newString = previousAnswer.toString();
+            string = newString;
+            display.textContent = string;
+            previousCalcCounter -=1;
+        }
         if (array.length <2 && string !==""){
         display.textContent = "";
         display.textContent ="-"+currentNum;
@@ -240,7 +272,6 @@ changeSigns.addEventListener("click", ()=> {
             display.textContent = array[2];
             string = display.textContent;
             console.log(string);
-            console.log("poo");
         }
         else if (array.length ==5  && array[4] !== ""){
             array.splice(3,1);
@@ -254,9 +285,42 @@ changeSigns.addEventListener("click", ()=> {
             display.textContent = string;
             previousCalcCounter -=1;
         }
+        if (array.length == 7){
+            display.textContent = array[6];
+            array.splice(5,1);
+            string = array.toString();
+            string = string.replaceAll(",","");
+        }
     }
     console.log(string);
 });
+
+buttons.forEach(button => {
+    button.addEventListener("mousedown", ()=>{
+        button.style.backgroundColor ="rgba(157, 157, 157, 0.79)";
+    });
+    button.addEventListener("mouseup", () =>{
+        button.style.backgroundColor= "rgba(157, 157, 157, 0.372)";
+    });
+})
+
+arithmetic.forEach(element => {
+    element.addEventListener("mousedown", ()=>{
+        element.style.backgroundColor ="rgb(255, 202, 133)";
+    });
+    element.addEventListener("mouseup", () =>{
+        element.style.backgroundColor= "rgb(255, 160, 35)";
+    });
+})
+
+topButtons.forEach(element => {
+    element.addEventListener("mousedown", ()=>{
+        element.style.backgroundColor ="rgba(222, 222, 222, 0.89)";
+    });
+    element.addEventListener("mouseup", () =>{
+        element.style.backgroundColor= "rgba(222, 222, 222, 0.479)";
+    });
+})
 
 buttons.forEach(button => {
     button.addEventListener("click", function(){
@@ -309,25 +373,25 @@ function operate(num1,num2,operator){
     if (operator == "+"){
         arithmeticCounter -=1;
         previousCalcCounter +=1;
-        previousAnswer = num1 + num2;
+        previousAnswer = Math.round((num1 + num2)*100)/100;
         return add(num1,num2);
     }
     else if(operator == "-"){
         arithmeticCounter -=1;
         previousCalcCounter +=1;
-        previousAnswer = num1 - num2;
+        previousAnswer = Math.round((num1 - num2)*100)/100;
         return subtract(num1,num2);
     }
     else if(operator == "x"){
         arithmeticCounter -=1;
         previousCalcCounter +=1;
-        previousAnswer = num1 * num2;
+        previousAnswer = Math.round((num1 * num2)*100)/100;
         return multiply(num1,num2);
     }
     else {
         previousCalcCounter +=1;
         arithmeticCounter -=1;
-        previousAnswer = num1 / num2;
+        previousAnswer = Math.round((num1 / num2)*100)/100;
         return divide(num1,num2);
     }
 }
